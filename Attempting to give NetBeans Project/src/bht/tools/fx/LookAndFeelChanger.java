@@ -29,7 +29,7 @@ public class LookAndFeelChanger
   public static final byte[] LAFs = {METAL, NIMBUS, MOTIF, WINDOWS, WINDOWS_CLASSIC};
   private static final LookAndFeel DEFAULT_LAF = UIManager.getLookAndFeel();
   
-  private static final ArrayList<LAFChangeListener> CLs = new ArrayList<>();
+  private static final ArrayList<LAFChangeListener> CLs = new ArrayList<LAFChangeListener>();
 //  public static final byte BH = 0x10;
 
 

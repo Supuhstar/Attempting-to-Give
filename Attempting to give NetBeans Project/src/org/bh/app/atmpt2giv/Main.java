@@ -121,7 +121,16 @@ public class Main
 				}
 				{ // init and add cancel button
 					cancelButton = new JButton("Cancel");
-					cancelButton.addActionListener((e) -> {step = 20; timer.restart();});
+					cancelButton.addActionListener(new ActionListener()
+					{
+
+						@Override
+						public void actionPerformed(ActionEvent e)
+						{
+							step = 20;
+							timer.restart();
+						}
+					});
 					gbc.fill = GridBagConstraints.NONE;
 					gbc.gridy++;
 					messagePanel.add(cancelButton, gbc);
@@ -139,7 +148,11 @@ public class Main
 			dialog.addWindowListener(new ExitOnCloseWindowListener());
 		}
 		
-		timer = new Timer(1000, (e) ->
+		timer = new Timer(1000, new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
 			{
 				switch (step++)
 				{
@@ -158,12 +171,19 @@ public class Main
 						status.setText(message(2)); // "Process failed, crap not given."
 						optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
 						cancelButton.setText("Close");
-						cancelButton.addActionListener((e2) -> System.exit(0));
+						cancelButton.addActionListener(new ActionListener()
+						{
+							@Override
+							public void actionPerformed(ActionEvent e)
+							{
+								System.exit(0);
+							}
+						});
 						timer.stop();
 						break;
 				}
 			}
-		);
+		});
 		timer.setInitialDelay(0);
 		timer.start();
 		dialog.setVisible(true);
